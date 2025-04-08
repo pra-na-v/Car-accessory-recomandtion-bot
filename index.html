@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Accessory Recommender</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Car Accessory Recommender</h1>
+            <div class="theme-selector">
+                <button class="theme-toggle">
+                    <i class="fas fa-palette"></i>
+                </button>
+                <div class="theme-options">
+                    <button data-theme="light">Light Theme</button>
+                    <button data-theme="dark">Dark Theme</button>
+                    <button data-theme="cyber">Cyber Theme</button>
+                    <button data-theme="mc">Minecraft Theme</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="main-nav">
+            <button class="nav-btn active" data-page="dashboard">
+                <i class="fas fa-home"></i> Dashboard
+            </button>
+            <button class="nav-btn" data-page="accessories">
+                <i class="fas fa-car"></i> My Accessories
+            </button>
+            <button class="nav-btn" data-page="wishlist">
+                <i class="fas fa-heart"></i> Wishlist
+            </button>
+            <button class="nav-btn" data-page="add">
+                <i class="fas fa-plus"></i> Add New
+            </button>
+            <button class="nav-btn" data-page="ai">
+                <i class="fas fa-robot"></i> AI Assistant
+            </button>
+        </nav>
+
+        <div id="dashboard" class="page active">
+            <section class="welcome-section">
+                <div class="welcome-content">
+                    <h2>Welcome to Your Car Accessory Recommender</h2>
+                    <p class="subtitle">Streamline your vehicle customization journey with our comprehensive accessory management platform</p>
+                    <div class="feature-highlights">
+                        <div class="feature-card">
+                            <i class="fas fa-tools"></i>
+                            <h3>Smart Inventory</h3>
+                            <p>Track and manage all your car accessories in one place</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-robot"></i>
+                            <h3>AI Assistant</h3>
+                            <p>Get personalized recommendations and expert advice</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-chart-pie"></i>
+                            <h3>Analytics</h3>
+                            <p>Monitor your spending and track accessory value</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="dashboard-grid">
+                <div class="stats-section">
+                    <h3>Overview</h3>
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Total Accessories</h4>
+                                <p id="accessoryCount">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Wishlist Items</h4>
+                                <p id="wishlistCount">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Total Value</h4>
+                                <p id="totalValue">$0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-section">
+                    <div class="section-header">
+                        <h3>Recent Additions</h3>
+                        <button class="view-all-btn">View All</button>
+                    </div>
+                    <div class="accessories-grid" id="recentAccessories">
+                        <!-- Recent accessories will be dynamically added here -->
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add New Accessory</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-search"></i>
+                            <span>Search Accessories</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-robot"></i>
+                            <span>Ask AI Assistant</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tips-section">
+                    <h3>Pro Tips</h3>
+                    <div class="tips-container">
+                        <div class="tip-card">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>Regularly update your accessory inventory to maintain accurate records</p>
+                        </div>
+                        <div class="tip-card">
+                            <i class="fas fa-chart-line"></i>
+                            <p>Use our AI assistant to get personalized accessory recommendations</p>
+                        </div>
+                        <div class="tip-card">
+                            <i class="fas fa-tags"></i>
+                            <p>Organize accessories by category for better management</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accessories" class="page">
+            <div class="page-header">
+                <h2>My Accessories</h2>
+                <div class="search-filter">
+                    <input type="text" id="searchAccessories" placeholder="Search accessories...">
+                    <select id="vehicleTypeFilter">
+                        <option value="">All Vehicles</option>
+                        <option value="car">Car</option>
+                        <option value="suv">SUV</option>
+                        <option value="truck">Truck</option>
+                        <option value="motorcycle">Motorcycle</option>
+                    </select>
+                    <select id="fuelTypeFilter">
+                        <option value="">All Fuel Types</option>
+                        <option value="petrol">Petrol</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="electric">Electric</option>
+                        <option value="hybrid">Hybrid</option>
+                    </select>
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="interior">Interior</option>
+                        <option value="exterior">Exterior</option>
+                        <option value="performance">Performance</option>
+                        <option value="safety">Safety</option>
+                        <option value="electronics">Electronics</option>
+                    </select>
+                </div>
+            </div>
+            <div class="accessories-grid" id="accessoriesList">
+                <!-- Accessories will be dynamically added here -->
+            </div>
+        </div>
+
+        <div id="wishlist" class="page">
+            <div class="page-header">
+                <h2>My Wishlist</h2>
+                <div class="search-filter">
+                    <input type="text" id="searchWishlist" placeholder="Search wishlist...">
+                </div>
+            </div>
+            <div class="accessories-grid" id="wishlistItems">
+                <!-- Wishlist items will be dynamically added here -->
+            </div>
+        </div>
+
+        <div id="add" class="page">
+            <div class="page-header">
+                <h2>Add New Accessory</h2>
+            </div>
+            <form id="addAccessoryForm" class="accessory-form">
+                <div class="form-group">
+                    <label for="name">Accessory Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicleType">Vehicle Type</label>
+                    <select id="vehicleType" required>
+                        <option value="car">Car</option>
+                        <option value="suv">SUV</option>
+                        <option value="truck">Truck</option>
+                        <option value="motorcycle">Motorcycle</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fuelType">Fuel Type</label>
+                    <select id="fuelType" required>
+                        <option value="petrol">Petrol</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="electric">Electric</option>
+                        <option value="hybrid">Hybrid</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="interior">Interior</option>
+                        <option value="exterior">Exterior</option>
+                        <option value="performance">Performance</option>
+                        <option value="safety">Safety</option>
+                        <option value="electronics">Electronics</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <input type="text" id="brand" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price ($)</label>
+                    <input type="number" id="price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-plus"></i> Add Accessory
+                </button>
+            </form>
+        </div>
+
+        <div id="ai" class="page">
+            <div class="page-header">
+                <h2>AI Assistant</h2>
+                <div class="ai-mode-selector">
+                    <button class="mode-btn active" data-mode="chat">
+                        <i class="fas fa-comments"></i> General Chat
+                    </button>
+                    <button class="mode-btn" data-mode="recommendations">
+                        <i class="fas fa-car"></i> Accessory Recommendations
+                    </button>
+                </div>
+            </div>
+
+            <div class="ai-container">
+                <!-- Chat Mode -->
+                <div id="chatMode" class="ai-mode active">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot-message">
+                                <p>Hello! I'm your car accessory assistant. I can help you with:</p>
+                                <ul>
+                                    <li>General questions about car accessories</li>
+                                    <li>Maintenance advice</li>
+                                    <li>Installation guidance</li>
+                                    <li>Product comparisons</li>
+                                    <li>Budget planning</li>
+                                </ul>
+                                <p>What would you like to know?</p>
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <textarea id="userQuestion" placeholder="Type your question here..."></textarea>
+                            <button id="askGeminiBtn" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations Mode -->
+                <div id="recommendationsMode" class="ai-mode">
+                    <div class="recommendations-form">
+                        <div class="form-group">
+                            <label for="carModel">Car Model</label>
+                            <input type="text" id="carModel" placeholder="e.g., Toyota Camry 2023" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="carType">Vehicle Type</label>
+                            <select id="carType" required>
+                                <option value="sedan">Sedan</option>
+                                <option value="suv">SUV</option>
+                                <option value="truck">Truck</option>
+                                <option value="hatchback">Hatchback</option>
+                                <option value="sports">Sports Car</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <select id="budget" required>
+                                <option value="low">$0 - $500</option>
+                                <option value="medium">$500 - $2000</option>
+                                <option value="high">$2000+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferences">Preferences (Optional)</label>
+                            <textarea id="preferences" placeholder="e.g., Looking for performance upgrades, comfort accessories..."></textarea>
+                        </div>
+                        <button id="getRecommendationsBtn" class="submit-btn">
+                            <i class="fas fa-magic"></i> Get Recommendations
+                        </button>
+                    </div>
+                    <div class="recommendations-results" id="recommendationsResults">
+                        <div class="initial-message">
+                            <h3>How it works:</h3>
+                            <p>Our AI will analyze your car model and preferences to suggest the best accessories for your vehicle. The recommendations will include:</p>
+                            <ul>
+                                <li>Performance upgrades</li>
+                                <li>Comfort and convenience items</li>
+                                <li>Safety enhancements</li>
+                                <li>Maintenance tools</li>
+                                <li>Customization options</li>
+                            </ul>
+                            <p>Fill in your details above to get started!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
